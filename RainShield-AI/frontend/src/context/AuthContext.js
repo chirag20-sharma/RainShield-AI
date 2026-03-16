@@ -15,7 +15,7 @@ export function AuthProvider({ children }) {
           if (data.status === 'success') setUser(data.user);
           else logout();
         })
-        .catch(logout)
+        .catch(() => setLoading(false))
         .finally(() => setLoading(false));
     } else {
       setLoading(false);
