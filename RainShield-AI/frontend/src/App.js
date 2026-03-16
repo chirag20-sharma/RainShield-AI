@@ -1,33 +1,40 @@
-import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import Landing from './pages/Landing';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import Dashboard from './components/Dashboard';
-import './App.css';
 
-function App() {
-  const [status, setStatus] = useState('starting');
+function PrivateRoute({ children }) {
+  const { user, loading } = useAuth();
+  if (loading) return <div style={{ color: '#94a3b8', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>Loading…</div>;
+  return user ? children : <Navigate to="/login" replace />;
+}
 
-  useEffect(() => {
-    fetch('/api/diagnostics/health')
-      .then((r) => r.json())
-      .then((data) => setStatus(data.status))
-      .catch(() => setStatus('offline'));
-  }, []);
+function PublicRoute({ children }) {
+  const { user, loading } = useAuth();
+  if (loading) return null;
+  return user ? <Navigate to="/dashboard" replace /> : children;
+}
 
+function AppRoutes() {
   return (
-    <div className="app">
-      <header className="app-header">
-        <h1>RainShield AI</h1>
-        <p className="status">Backend status: <strong>{status}</strong></p>
-      </header>
-
-      <main>
-        <Dashboard />
-      </main>
-
-      <footer>
-        <small>Data is mocked; this is an MVP starter kit.</small>
-      </footer>
-    </div>
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+      <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+      <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </AuthProvider>
+  );
+}
