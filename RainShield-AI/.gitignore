@@ -44,6 +44,15 @@ backend/.env
 coverage/
 .nyc_output/
 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.pytest_cache/
+
 # Misc
 *.pem
 .vercel
