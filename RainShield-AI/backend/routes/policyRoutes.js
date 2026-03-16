@@ -1,5 +1,9 @@
-// Policy routes
 const express = require('express');
 const router = express.Router();
-// Add routes here
+const { getMyPolicy, getAllPolicies } = require('../controllers/policyController');
+const protect = require('../middlewares/authMiddleware');
+
+router.get('/my', protect, getMyPolicy);
+router.get('/', protect, getAllPolicies);
+
 module.exports = router;
