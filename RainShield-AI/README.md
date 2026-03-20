@@ -1,1012 +1,408 @@
-# 🌧️ RainShield AI
-
-### AI-Powered Parametric Income Protection for Gig Delivery Workers
+🌧️ RainShield AI
+AI-Powered Parametric Income Protection for Gig Delivery Workers
 
 🚀 Hackathon Project — AI + Insurance Technology + Climate Risk Protection
 
----
+1. Problem Statement
 
-# 🚀 Quick Start Guide
+Gig delivery workers depend on daily orders for survival. Platforms like Zomato, Swiggy, and others provide flexibility—but zero protection against environmental disruptions.
 
-## Prerequisites
+When conditions worsen:
 
-- Node.js v16+ installed
-- MongoDB installed and running (or MongoDB Atlas account)
-- Git installed
+Heavy rain reduces orders
 
-## Installation Steps
+Extreme heat reduces working hours
 
-### 1. Clone the repository
+Pollution and traffic slow deliveries
 
-```bash
-git clone <your-repo-url>
-cd RainShield-AI
-```
+The result is not inconvenience—it is direct income loss.
 
-### 2. Install dependencies
+A worker earning ₹600/day can drop to ₹300–₹350 during disruptions.
 
-```bash
-# Install root dependencies (concurrently)
-npm install
+This is not a rare event. It happens multiple times every week in Indian cities.
 
-# Install backend dependencies
-cd backend
-npm install
+2. Why Existing Systems Fail
 
-# Install frontend dependencies
-cd ../frontend
-npm install
-
-# Return to root
-cd ..
-```
-
-### 3. Configure environment variables
-
-```bash
-# Copy backend environment template
-cp backend/.env.example backend/.env
-
-# Edit backend/.env with your MongoDB URI
-# MONGODB_URI=mongodb://localhost:27017/rainshield
-# PORT=4000
-```
-
-### 4. Start MongoDB
-
-```bash
-# If using local MongoDB
-mongod
-
-# Or use MongoDB Atlas cloud connection string in .env
-```
+Traditional insurance models are not built for:
 
-### 5. Run the application
+Short-term income shocks
 
-```bash
-# From root directory - runs both frontend and backend
-npm run dev
+Daily wage dependency
 
-# Or run separately:
-npm run dev-backend  # Backend only (port 4000)
-npm run dev-frontend # Frontend only (port 3000)
-```
+Real-time payouts
 
-### 6. Access the application
+Even parametric systems fail because they:
 
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:4000
-- Health Check: http://localhost:4000/api/diagnostics/health
+Trust single signals (like GPS)
 
-## API Endpoints
+Ignore coordinated fraud
 
-### Users
-- `GET /api/users` - Get all users
-- `POST /api/users` - Create new user
-- `GET /api/users/:id` - Get user by ID
+Assume users behave honestly
 
-### Policies
-- `GET /api/policies` - Get all policies
-- `POST /api/policies` - Create new policy
-- `GET /api/policies/user/:userId` - Get user's policies
+In reality, systems are attacked, not used.
 
-### Claims
-- `GET /api/claims` - Get all claims
-- `POST /api/claims` - Submit new claim
-- `PUT /api/claims/:id` - Update claim status
+3. Solution: RainShield AI
 
-### Payouts
-- `GET /api/payouts` - Get all payouts
-- `POST /api/payouts` - Process payout
+RainShield AI is a parametric, AI-driven income protection system.
 
-### Triggers
-- `POST /api/triggers/check` - Check weather triggers
+Instead of waiting for claims:
 
-### Alerts
-- `GET /api/alerts` - Get all alerts
-- `POST /api/alerts` - Create alert
-- `GET /api/alerts/user/:userId` - Get user alerts
+The system monitors environmental conditions
 
-### Diagnostics
-- `GET /api/diagnostics/health` - Health check
+Predicts income loss in advance
 
-## Project Structure
+Automatically triggers payouts
 
-```
-RainShield-AI/
-├── backend/                    # Express.js API
-│   ├── src/
-│   │   ├── config/            # Database configuration
-│   │   ├── controllers/       # Request handlers
-│   │   ├── models/            # Mongoose schemas
-│   │   ├── routes/            # API routes
-│   │   ├── services/          # Business logic
-│   │   ├── middleware/        # Custom middleware
-│   │   ├── jobs/              # Scheduled tasks
-│   │   └── index.js           # Server entry
-│   ├── .env                   # Environment variables (gitignored)
-│   ├── .env.example           # Environment template
-│   └── package.json
-├── frontend/                   # React application
-│   ├── public/
-│   ├── src/
-│   │   ├── components/        # React components
-│   │   ├── App.js             # Root component
-│   │   └── index.js           # React entry
-│   ├── .env.example
-│   └── package.json
-├── .gitignore
-├── package.json               # Root workspace config
-└── README.md
-```
+Example
+Condition	Threshold	Payout
+Rainfall	> 60 mm	₹200
+Heat	> 42°C	₹150
+AQI	> 300	₹150
 
-## Troubleshooting
+No forms. No delays. No manual approval.
 
-### Port already in use
+4. Core Innovation: Income Loss Predictor
 
-```bash
-# Windows
-netstat -ano | findstr :4000
-taskkill /PID <PID> /F
+RainShield does not just react—it predicts.
 
-# Linux/Mac
-lsof -ti:4000 | xargs kill -9
-```
+Example
 
-### MongoDB connection error
+Normal income: ₹600
+Forecast: Heavy rain
 
-- Ensure MongoDB is running
-- Check MONGODB_URI in backend/.env
-- Verify MongoDB port (default: 27017)
+Predicted income: ₹350
 
-### Frontend can't connect to backend
+Loss: ₹250
 
-- Verify backend is running on port 4000
-- Check proxy setting in frontend/package.json
-- Ensure CORS is enabled in backend
+User receives:
 
----
+⚠️ Rain expected tomorrow
+Estimated loss ₹250
+Protection activated
 
-# 1. Problem Statement
+This shifts insurance from reactive → proactive.
 
-Gig economy delivery workers such as those working with **Zomato, Swiggy, Zepto, Amazon, Dunzo, and other delivery platforms** depend heavily on daily deliveries for income.
+5. User Scenario
+Rahul – Delivery Worker
 
-However, their earnings are highly vulnerable to **environmental disruptions**, including:
+Daily income: ₹650
 
-* Heavy rainfall
-* Extreme heat
-* Flooding
-* Severe air pollution
-* Traffic congestion caused by weather
+Rainy day income: ₹350
 
-During such disruptions, gig workers may lose **20–30% of their weekly earnings** because:
+Loss: ₹300
 
-* Customers order less
-* Roads become unsafe
-* Platforms temporarily pause operations
-* Delivery efficiency drops significantly
+With RainShield:
 
-### Key Challenges
+Weekly premium: ₹30
 
-* Gig workers lack **income protection**
-* Traditional insurance requires **manual claims**
-* Policies are **too complex or expensive**
-* Temporary income loss due to environmental factors is **not covered**
+Automatic payout: ₹200
 
-As a result, gig workers face **financial instability during climate or environmental disruptions**.
+RainShield doesn’t eliminate loss—but reduces financial shock.
 
----
+6. System Workflow
 
-# 2. Proposed Solution
+User onboarding
 
-## RainShield AI
+AI risk scoring
 
-RainShield AI is an **AI-powered parametric insurance platform** designed specifically for gig delivery workers.
+Weekly premium calculation
 
-Instead of traditional claim-based insurance, RainShield uses **parametric triggers** based on environmental conditions.
+Policy activation (7 days)
 
-When predefined environmental thresholds are crossed, **payouts are triggered automatically**.
+Real-time environmental monitoring
 
-### Example
+Income prediction alerts
 
-| Condition     | Threshold   | Automatic Payout |
-| ------------- | ----------- | ---------------- |
-| Rainfall      | > 60 mm/day | ₹200             |
-| Extreme Heat  | > 42°C      | ₹150             |
-| Air Pollution | AQI > 300   | ₹150             |
+Trigger validation
 
-### Benefits
+Automatic claim creation
 
-* No manual claims
-* Instant payouts
-* Affordable weekly premium
-* Fully automated system
+Fraud validation
 
----
+Instant payout
 
-# 3. Core Innovation: AI Income Loss Predictor
+7. Parametric Triggers
+Condition	Trigger
+Rainfall	> 60 mm
+Heat	> 42°C
+AQI	> 300
+Flood	Govt alert
+Traffic	> 80% congestion
+8. AI System Overview
+Risk Scoring
 
-RainShield AI introduces a **Predictive Income Loss Model**.
+Evaluates environmental volatility + location
 
-Instead of reacting after disruptions occur, the system predicts **potential income loss before it happens**.
+Income Predictor
 
-### Example
+Forecast → expected earnings drop
 
-Normal daily income: **₹600**
+Fraud Engine
 
-Weather forecast: **Heavy rain tomorrow**
+Detects anomalies and coordinated attacks
 
-Predicted deliveries drop → earnings **₹350**
+Behavioral Model
 
-Estimated income loss:
+Analyzes patterns, not just inputs
 
-₹600 − ₹350 = **₹250**
+🚨 9. Adversarial Defense & Anti-Spoofing Strategy
+The Threat
 
-Worker receives notification:
+A coordinated group uses GPS spoofing to fake presence in a high-risk zone and trigger payouts.
 
-> ⚠️ Heavy rain expected tomorrow
-> Estimated income loss: ₹250
-> Insurance protection activated
+This is not theoretical—it is the most realistic failure mode.
 
-If the rainfall threshold is actually crossed, the system **automatically triggers the payout**.
+1️⃣ Differentiation: Real vs Fake Worker
 
-This creates a **proactive AI-driven insurance system**.
+We do NOT trust GPS alone.
 
----
+We analyze behavioral consistency over time.
 
-# 4. User Persona Scenario
+Real Worker
 
-### Persona: Rahul – Delivery Worker
+Movement matches road networks
 
-* Age: 26
-* City: Ahmedabad
-* Platform: Zomato + Swiggy
-* Average daily earnings: ₹650
-* Weekly earnings: ₹4500
+Stops and starts frequently
 
-### Problem
+Activity aligns with delivery patterns
 
-On rainy days, deliveries drop significantly.
+Network conditions fluctuate in bad weather
 
-Rainy day income:
+Fake Worker
 
-₹350
+Perfect linear movement
 
-Daily loss:
+Static device but changing GPS
 
-₹650 − ₹350 = **₹300**
+No delivery activity
 
-### With RainShield AI
+Identical behavior across multiple users
 
-Rahul purchases protection:
+👉 The system evaluates pattern realism, not just location.
 
-Weekly premium: **₹30**
+2️⃣ Data Beyond GPS
 
-Rainfall trigger occurs.
+We correlate multiple signals:
 
-Automatic payout: **₹200**
+Device Signals
 
-RainShield helps Rahul reduce income loss during weather disruptions.
+Accelerometer (real movement vs static)
 
----
+Gyroscope patterns
 
-# 5. System Workflow
+Network Signals
 
-## Step 1 — Worker Onboarding
+IP consistency
 
-User registers by entering:
+Network switching behavior
 
-* Name
-* Phone number
-* City
-* Delivery platform
-* Average weekly income
-* Payout method (UPI)
+Latency fluctuations
 
-User profile is created in the system.
+Behavioral Signals
 
----
+Delivery frequency
 
-## Step 2 — AI Risk Assessment
+Active time windows
 
-The AI Risk Engine evaluates:
+Route entropy
 
-* Location weather volatility
-* Historical rainfall patterns
-* Heat index frequency
-* Pollution levels
+Environmental Cross-check
 
-The system generates a **Risk Score (0–100)**.
+Nearby worker activity
 
-Example:
+Traffic conditions
 
-Ahmedabad risk score → **62**
+Weather severity vs actual movement
 
----
+3️⃣ Coordinated Fraud Detection
 
-## Step 3 — Dynamic Weekly Premium Calculation
+We treat fraud as a group problem.
 
-Premium is calculated using:
+We detect:
 
-* Risk score
-* Historical weather disruption frequency
-* Income range
+Users with identical movement patterns
 
-Example pricing:
+Simultaneous claims from same region
 
-| Risk Level  | Weekly Premium |
-| ----------- | -------------- |
-| Low Risk    | ₹20            |
-| Medium Risk | ₹30            |
-| High Risk   | ₹40            |
+Clustered behavioral similarity
 
----
+A single anomaly is ignored.
+A synchronized pattern is flagged.
 
-## Step 4 — Policy Activation
+4️⃣ UX Balance (Critical)
 
-The worker purchases a **weekly policy**.
+We do NOT punish users instantly.
 
-Policy duration:
+Risk-Based Actions
+Risk	Action
+Low	Instant payout
+Medium	Delayed payout
+High	Soft verification
+Soft Verification
 
-**7 days**
+Quick in-app interaction
 
-Coverage activates instantly.
+Passive validation
 
----
+Cross-check with nearby users
 
-## Step 5 — Environmental Monitoring
+Design Principle
 
-The system continuously monitors external data sources:
+No hard rejection without strong evidence.
+Minimize false positives.
 
-* Weather APIs
-* Pollution APIs
-* Traffic data
-* Government alerts
+🧠 10. Real-World Failure Analysis & Trade-offs
 
----
+Most systems fail because they assume perfect data.
 
-## Step 6 — Income Loss Prediction
+We assume:
 
-The AI prediction engine forecasts potential disruptions.
+Data is noisy
 
-Worker receives notification:
+Users can cheat
 
-> Storm predicted tomorrow
-> Estimated income loss ₹250
+APIs are imperfect
 
----
+Trade-off 1: Speed vs Accuracy
 
-## Step 7 — Trigger Detection
+Instant payouts = high fraud risk
 
-Example trigger:
+Solution:
 
-Rainfall > 60 mm
+Risk-tiered payout delays
 
-The system validates the event using weather API data.
+Trade-off 2: UX vs Security
 
----
+Too strict → bad experience
+Too loose → system collapse
 
-## Step 8 — Automatic Claim Generation
+Solution:
 
-If a trigger condition is satisfied:
+Invisible checks first
 
-A claim is automatically generated.
+Escalation only when needed
 
-No action is required from the worker.
+Trade-off 3: Individual vs Group Fraud
 
----
+Fraud is rarely individual.
 
-## Step 9 — Fraud Detection
+Solution:
 
-The system validates claim authenticity using:
+Graph-based detection
 
-* Screenshot verification
-* Location validation
-* Behavioral anomaly detection
+Behavioral clustering
 
----
+Key Insight
 
-## Step 10 — Instant Payout
+“Fraud is not about fake data.
+It is about unnatural patterns.”
 
-If the claim is valid:
+🚀 11. What Makes This Different
 
-The payout is transferred using:
+RainShield AI is designed for:
 
-* UPI
-* Digital wallet
-* Payment sandbox
+Real-world failure
 
----
+Adversarial behavior
 
-# 6. Weekly Premium Pricing Model
+System abuse scenarios
 
-Example:
+Not just happy-path users.
 
-Worker weekly income:
+12. Technology Stack
 
-₹4500
+Frontend: React
+Backend: Node.js, Express
+Database: MongoDB
+AI: Python (Scikit-learn)
+APIs: Weather, AQI, Traffic
 
-Coverage amount:
+13. Backend Architecture
 
-Up to **₹1000 weekly protection**
+API Gateway
 
-Weekly premium:
+Risk Engine
 
-₹30
+Trigger Engine
 
-### Payout Structure
+Fraud Engine
 
-| Event        | Payout |
-| ------------ | ------ |
-| Heavy Rain   | ₹200   |
-| Extreme Heat | ₹150   |
-| Severe AQI   | ₹150   |
+AI Prediction Engine
 
-Maximum weekly payout: **₹1000**
+Payment Service
 
----
+14. Database Design
+Users
+userId, city, income, riskScore
+Policies
+policyId, premium, duration
+Claims
+claimId, trigger, fraudScore
+Payouts
+payoutId, amount, status
+15. System Architecture
+Frontend (React)
+      |
+   Backend API
+      |
+----------------------------
+| Risk | Trigger | Fraud | AI |
+----------------------------
+      |
+    MongoDB
+      |
+   Payment System
+16. MVP Screens
 
-# 7. Parametric Trigger Definitions
+Login / Signup
 
-| Condition          | Trigger            |
-| ------------------ | ------------------ |
-| Heavy Rain         | Rainfall > 60 mm   |
-| Extreme Heat       | Temperature > 42°C |
-| Severe Pollution   | AQI > 300          |
-| Flood Warning      | Government alert   |
-| Traffic Congestion | > 80% road delay   |
+Onboarding
 
----
+Buy Policy
 
-# 8. AI / Machine Learning Components
+Dashboard
 
-## 1 Risk Scoring Model
+Alerts
 
-Inputs:
+Claims
 
-* City
-* Historical weather volatility
-* Frequency of disruptions
-* Worker income
+Payouts
 
-Output:
+17. Analytics Dashboard
 
-Risk score.
+Active users
 
----
+Trigger events
 
-## 2 Income Loss Predictor
+Total payouts
 
-Inputs:
+Fraud alerts
 
-* Weather forecast
-* Historical delivery activity
-* Traffic congestion
-* Pollution levels
+Risk heatmap
 
-Output:
+18. Financial Model
 
-Predicted income drop.
+100 users × ₹30 = ₹3000
 
----
+Payouts ≈ ₹1500
 
-## 3 Fraud Detection Model
+Remaining margin: ₹1500
 
-Detects:
+19. Parametric Rules
 
-* Fake earnings screenshots
-* Duplicate claims
-* Manipulated income reporting
+Rain > 60mm → ₹200
 
----
+Heat > 42°C → ₹150
 
-## 4 Behavioral Anomaly Detection
+AQI > 300 → ₹150
 
-Detects suspicious behavior patterns.
+🏁 Final Thought
 
-Example:
+RainShield AI is not just an insurance product.
 
-Worker reports low income while activity data shows high delivery volume.
+It is a system designed under one assumption:
 
----
+If it can be exploited, it will be exploited.
 
-# 9. Fraud Detection Mechanisms
+And built to survive that.
 
-## Screenshot Verification
-
-Workers upload delivery earnings screenshot.
-
-OCR extracts:
-
-* Earnings amount
-* Date
-* Platform name
-
----
-
-## Location Validation
-
-Worker GPS is verified against:
-
-* Registered city
-* Weather trigger location
-
----
-
-## Duplicate Claim Detection
-
-System prevents:
-
-* Multiple claims for the same event
-* Multiple claims by the same worker
-
----
-
-## Activity Mismatch Detection
-
-Example:
-
-Worker reports no deliveries.
-
-But traffic and platform data indicate normal activity.
-
-The system flags the claim.
-
----
-
-# 10. Technology Stack (MERN)
-
-### Frontend
-
-* React 18
-* React Scripts
-* Axios (API calls)
-* CSS3
-
-### Backend
-
-* Node.js
-* Express.js
-* Mongoose (MongoDB ODM)
-* CORS
-* Morgan (HTTP logging)
-* Dotenv (Environment config)
-* Nodemon (Development)
-
-### Database
-
-* MongoDB (Local/Atlas)
-
-### AI Services
-
-* Income Loss Prediction (ML model)
-* Fraud Detection (Pattern analysis)
-* Risk Scoring Engine
-
-### External APIs
-
-* Weather API (OpenWeatherMap/WeatherAPI)
-* AQI API (Air Quality Index)
-* Traffic API
-* Payment sandbox (Mock UPI)
-
----
-
-# 11. Backend Service Architecture
-
-```
-backend/
-├── src/
-│   ├── config/
-│   │   └── db.js                    # MongoDB connection
-│   ├── controllers/
-│   │   ├── userController.js        # User management logic
-│   │   ├── policyController.js      # Policy CRUD operations
-│   │   ├── claimController.js       # Claim processing
-│   │   ├── payoutController.js      # Payout handling
-│   │   ├── triggerController.js     # Weather trigger checks
-│   │   └── diagnosticsController.js # Health checks
-│   ├── models/
-│   │   ├── User.js                  # User schema
-│   │   ├── Policy.js                # Policy schema
-│   │   ├── Claim.js                 # Claim schema
-│   │   ├── Payout.js                # Payout schema
-│   │   └── Alert.js                 # Alert schema
-│   ├── routes/
-│   │   ├── users.js                 # /api/users
-│   │   ├── policies.js              # /api/policies
-│   │   ├── claims.js                # /api/claims
-│   │   ├── payouts.js               # /api/payouts
-│   │   ├── triggers.js              # /api/triggers
-│   │   ├── alerts.js                # /api/alerts
-│   │   └── diagnostics.js           # /api/diagnostics
-│   ├── services/
-│   │   ├── weatherTrigger.js        # Weather API integration
-│   │   ├── fraudDetection.js        # Fraud detection logic
-│   │   ├── incomeLossPrediction.js  # Income prediction AI
-│   │   └── paymentService.js        # Payment processing
-│   ├── middleware/
-│   │   └── errorHandler.js          # Global error handling
-│   ├── jobs/
-│   │   └── triggerJob.js            # Scheduled weather checks
-│   └── index.js                     # Server entry point
-```
-
-Core services:
-
-### API Gateway (Express)
-
-Handles incoming requests and routes them to controllers.
-
-### Risk Engine (Service Layer)
-
-Calculates premiums and risk scores based on location and weather patterns.
-
-### Trigger Engine (Service + Job)
-
-Monitors environmental conditions via external APIs.
-
-### AI Prediction Engine (Service)
-
-Predicts income loss using weather forecasts and historical data.
-
-### Fraud Detection Engine (Service)
-
-Validates claims using pattern analysis and anomaly detection.
-
-### Payment Service
-
-Handles payouts via UPI/payment sandbox.
-
----
-
-# 12. Database Design (MongoDB Schemas)
-
-## Users Collection (User.js)
-
-```javascript
-{
-  _id: ObjectId,
-  name: String (required),
-  email: String (required, unique),
-  phone: String (required),
-  city: String,
-  platform: String,
-  avgWeeklyIncome: Number,
-  riskScore: Number,
-  location: {
-    latitude: Number,
-    longitude: Number,
-    address: String
-  },
-  createdAt: Date (default: Date.now)
-}
-```
-
----
-
-## Policies Collection (Policy.js)
-
-```javascript
-{
-  _id: ObjectId,
-  userId: ObjectId (ref: 'User'),
-  premium: Number (required),
-  coverage: Number (required),
-  startDate: Date (required),
-  endDate: Date (required),
-  status: String (enum: ['active', 'expired', 'cancelled']),
-  triggers: [{
-    type: String,
-    threshold: Number,
-    payout: Number
-  }],
-  createdAt: Date (default: Date.now)
-}
-```
-
----
-
-## Claims Collection (Claim.js)
-
-```javascript
-{
-  _id: ObjectId,
-  userId: ObjectId (ref: 'User'),
-  policyId: ObjectId (ref: 'Policy'),
-  triggerType: String (required),
-  triggerValue: Number,
-  amount: Number (required),
-  fraudScore: Number,
-  status: String (enum: ['pending', 'approved', 'rejected', 'paid']),
-  evidence: {
-    screenshot: String,
-    location: Object,
-    timestamp: Date
-  },
-  createdAt: Date (default: Date.now)
-}
-```
-
----
-
-## Payouts Collection (Payout.js)
-
-```javascript
-{
-  _id: ObjectId,
-  claimId: ObjectId (ref: 'Claim'),
-  userId: ObjectId (ref: 'User'),
-  amount: Number (required),
-  method: String (enum: ['upi', 'bank', 'wallet']),
-  transactionId: String,
-  status: String (enum: ['pending', 'completed', 'failed']),
-  processedAt: Date,
-  createdAt: Date (default: Date.now)
-}
-```
-
----
-
-## Alerts Collection (Alert.js)
-
-```javascript
-{
-  _id: ObjectId,
-  userId: ObjectId (ref: 'User'),
-  type: String (enum: ['rain', 'flood', 'storm', 'heat', 'pollution']),
-  severity: String (enum: ['low', 'medium', 'high']),
-  message: String (required),
-  location: {
-    latitude: Number,
-    longitude: Number
-  },
-  sentAt: Date (default: Date.now),
-  status: String (enum: ['sent', 'delivered', 'failed'])
-}
-```
-
----
-
-# 13. System Architecture (Actual Implementation)
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Frontend (Port 3000)                     │
-│                      React Application                      │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  │
-│  │Dashboard │  │  Policy  │  │  Claims  │  │  Alerts  │  │
-│  └──────────┘  └──────────┘  └──────────┘  └──────────┘  │
-└────────────────────────┬────────────────────────────────────┘
-                         │ HTTP/Axios (Proxy)
-                         ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    Backend (Port 4000)                      │
-│                   Express.js REST API                       │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │              Routes (API Endpoints)                  │  │
-│  │  /api/users  /api/policies  /api/claims  /api/...   │  │
-│  └────────────────────┬─────────────────────────────────┘  │
-│                       ▼                                     │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │                  Controllers                         │  │
-│  │  userController  policyController  claimController  │  │
-│  └────────────────────┬─────────────────────────────────┘  │
-│                       ▼                                     │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │                   Services                           │  │
-│  │  ┌──────────┐  ┌──────────┐  ┌──────────┐          │  │
-│  │  │ Weather  │  │  Fraud   │  │ Income   │          │  │
-│  │  │ Trigger  │  │Detection │  │Prediction│          │  │
-│  │  └──────────┘  └──────────┘  └──────────┘          │  │
-│  └────────────────────┬─────────────────────────────────┘  │
-│                       ▼                                     │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │              Models (Mongoose)                       │  │
-│  │  User  Policy  Claim  Payout  Alert                 │  │
-│  └────────────────────┬─────────────────────────────────┘  │
-└────────────────────────┼────────────────────────────────────┘
-                         ▼
-┌─────────────────────────────────────────────────────────────┐
-│                  MongoDB Database                           │
-│  users  policies  claims  payouts  alerts                  │
-└─────────────────────────────────────────────────────────────┘
-                         │
-                         ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   External Services                         │
-│  Weather API  │  AQI API  │  Payment Gateway               │
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
-# 14. MVP UI Screens (Frontend Structure)
-
-```
-frontend/
-├── public/
-│   └── index.html              # HTML template
-├── src/
-│   ├── components/
-│   │   └── Dashboard.js        # Main dashboard component
-│   ├── App.js                  # Root component with routing
-│   ├── App.css                 # Application styles
-│   ├── index.js                # React entry point
-│   └── index.css               # Global styles
-└── package.json
-```
-
-### Planned Screens:
-
-1. **Login / Signup** - User authentication
-2. **Worker Onboarding** - Profile setup
-3. **Buy Weekly Policy** - Policy purchase flow
-4. **Dashboard** (Currently implemented)
-   - Coverage status
-   - Risk alerts
-   - Predicted income loss
-   - Backend health status
-5. **Weather Risk Alerts** - Real-time notifications
-6. **Claim Status** - Track claim progress
-7. **Payout History** - Transaction history
-
----
-
-# 15. Analytics Dashboard
-
-Admin analytics include:
-
-* Total insured workers
-* Active policies
-* Weather triggers activated
-* Total payouts
-* Fraud alerts
-* Risk heatmap by city
-
----
-
-# 16. Development Roadmap
-
-### Phase 1 ✅ COMPLETED
-
-- [x] MERN project structure setup
-- [x] MongoDB connection configuration
-- [x] Express.js REST API setup
-- [x] Mongoose models (User, Policy, Claim, Payout, Alert)
-- [x] API routes and controllers
-- [x] React frontend initialization
-- [x] Basic Dashboard component
-- [x] Monorepo workspace configuration
-
-### Phase 2 🚧 IN PROGRESS
-
-- [ ] Parametric trigger engine implementation
-- [ ] Weather API integration
-- [ ] Trigger detection logic
-- [ ] Scheduled jobs for monitoring
-
-### Phase 3 📋 PLANNED
-
-- [ ] AI income prediction model
-- [ ] Historical data analysis
-- [ ] Prediction API endpoints
-
-### Phase 4 📋 PLANNED
-
-- [ ] Fraud detection system
-- [ ] Screenshot verification
-- [ ] Anomaly detection
-
-### Phase 5 📋 PLANNED
-
-- [ ] Complete React dashboard UI
-- [ ] Policy purchase flow
-- [ ] Claims management interface
-- [ ] Alert notifications
-
-### Phase 6 📋 PLANNED
-
-- [ ] Payment simulation and testing
-- [ ] UPI integration (sandbox)
-- [ ] End-to-end testing
-
----
-
-# 17. Example Parametric Rules
-
-Rule 1:
-
-IF rainfall > 60mm
-AND policy active
-THEN payout ₹200
-
-Rule 2:
-
-IF temperature > 42°C
-THEN payout ₹150
-
-Rule 3:
-
-IF AQI > 300
-THEN payout ₹150
-
----
-
-# 18. Financial Model Example
-
-100 workers insured.
-
-Weekly premium:
-
-₹30
-
-Total weekly premium pool:
-
-₹3000
-
-Average payouts:
-
-₹1500
-
-Remaining margin:
-
-₹1500
-
-Used for:
-
-* operating cost
-* reserve fund
-* platform maintenance
-
----
-
-# 19. Project Name & Branding
-
-Possible names:
-
-* RainShield AI
-* GigGuard
-* DeliverSafe
-* ClimateCover
-* RideSecure AI
-* WeatherPay
-
-Recommended name:
-
-**RainShield AI**
-
-Tagline:
-
-**"Protecting gig workers from climate income shocks."**
-
----
-
-# 20. 2-Minute Demo Video Script
-
-Hello everyone.
-
-Gig delivery workers depend on daily deliveries for their income. However, environmental disruptions like heavy rain, extreme heat, and air pollution can significantly reduce their ability to work.
-
-RainShield AI is an AI-powered parametric insurance platform designed specifically for gig delivery workers.
-
-Workers pay a small weekly premium of around ₹30.
-
-Our AI system continuously monitors weather, pollution, and traffic data in real time.
-
-If predefined environmental thresholds are crossed, payouts are triggered automatically without requiring any manual claim.
-
-Additionally, RainShield AI includes a predictive Income Loss Predictor.
-
-Using weather forecasts and historical delivery data, the system estimates potential income loss before disruptions occur and notifies the worker.
-
-For example:
-Heavy rain expected tomorrow. Estimated income loss ₹250. Insurance protection activated.
-
-If the event occurs, the system automatically processes payouts through UPI.
-
-RainShield AI is built using the MERN stack with AI-based risk assessment and fraud detection.
-
-This platform provides gig workers with financial protection against environmental disruptions and introduces a smarter, automated model for insurance.
-
-Thank you.
